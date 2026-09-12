@@ -12,5 +12,21 @@ steps:
     args: 
       - 'push'
       - 'us-central1-docker.pkg.dev/dbt-test-508317/dbt-repo/aprendendo-dbt-image:latest'
+
+  #Passo 3: Fazer o update da job com a imagem atual
+  # Passo 3: Atualizar o Cloud Run Job
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args: 
+      - 'run'
+      - 'jobs'
+      - 'update'
+      - 'aprendendo-dbt-job'
+      - '--image'
+      - 'us-central1-docker.pkg.dev/dbt-test-508317/dbt-repo/aprendendo-dbt-image:latest'
+      - '--region'
+      - 'us-central1'      
+      - '--service-account'
+      - 'dbt-681@dbt-test-508317.iam.gserviceaccount.com'
 options:
   logging: CLOUD_LOGGING_ONLY
