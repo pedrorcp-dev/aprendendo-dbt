@@ -1,0 +1,14 @@
+steps:
+  # Passo 1: Construir a imagem Docker usando o Dockerfile
+  - name: 'gcr.io/cloud-builders/docker'
+    args: 
+      - 'build'
+      - '-t'
+      - 'southamerica-east1-docker.pkg.dev/dbt-test-508317/dbt-repo/aprendendo-dbt-image:latest'
+      - '.'
+
+  # Passo 2: Enviar a imagem pronta para o Artifact Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: 
+      - 'push'
+      - 'southamerica-east1-docker.pkg.dev/dbt-test-508317/dbt-repo/aprendendo-dbt-image:latest'
