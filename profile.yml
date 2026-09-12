@@ -1,0 +1,10 @@
+jaffle_shop:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      threads: 16
+      database: dbt-test-508317
+      schema: jaffle_shop
+      method: oauth
+      dataproc_batch: null
